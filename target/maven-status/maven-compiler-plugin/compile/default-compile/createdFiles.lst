@@ -1,0 +1,5 @@
+com\example\demo\controllers\TanquesController.class
+com\example\demo\response\EstudianteResponse.class
+com\example\demo\services\TanquesService.class
+com\example\demo\repositories\TanquesRepository.class
+com\example\demo\models\Tanques.class
