@@ -40,6 +40,21 @@ public class TanquesService {
 
         //Llenar una respuesta al cliente
         TanquesResponse tanquesResponse = new TanquesResponse();
+        tanquesResponse.setCapacidad(tanque.getCapacidad());
+        tanquesResponse.setNivel_actual(tanque.getNivel_actual());
+        tanquesResponse.setTipo_gasolina(tanque.getTipo_gasolina());
+        tanquesResponse.setUbicacion(tanque.getUbicacion());
+        tanquesResponse.setId_cliente(tanque.getId_cliente());
+        tanquesResponse.setTipo_pago(tanque.getTipo_pago());
+        tanquesResponse.setFecha(tanque.getFecha());
+        tanquesResponse.setCreated_at(tanque.getCreated_at());
+        tanquesResponse.setUpdated_at(tanque.getUpdated_at());
 
+        //Dar una respuesta al cliente
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setResponse("Tanque guardado exitosamente");
+        responseDTO.setTanques(tanquesResponse);
+
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
 }
