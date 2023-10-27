@@ -46,12 +46,12 @@ public class TanquesController {
     public ResponseEntity<ResponseDTO> actualizarTanque(@RequestBody RequestDTO requestDTO) {
         return tanquesService.actualizarTanque(requestDTO);
     }
-/*
+
     //Ruta para eliminar un tanque (DELETE)
     //http://localhost:8080/apiSPTanques/eliminarTanque/{id}
     @DeleteMapping("/eliminarTanque")
     public ResponseEntity<ResponseDTO> eliminarTanque(@RequestBody RequestDTO requestDTO) {
         return tanquesService.eliminarTanque(requestDTO);
     }
- */
+
 }

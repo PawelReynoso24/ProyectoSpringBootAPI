@@ -90,5 +90,29 @@ public ResponseEntity<ResponseDTO> actualizarTanque(RequestDTO requestDTO) {
     }
 
     //Eliminar un tanque
+    public ResponseEntity<ResponseDTO>eliminarTanque(RequestDTO requestDTO)
+    {
+        ResponseDTO responseDTO = new ResponseDTO();
+        Integer id_tanque = requestDTO.getRequest().getTanques().getId();
+        TanquesResponse tanquesResponse = new TanquesResponse();
+        if (tanquesRepository.existsById(id_tanque)) {
+            tanquesRepository.deleteById(id_tanque);
 
+            //Llenar una respuesta al cliente+
+
+            tanquesResponse.setId(requestDTO.getRequest().getTanques().getId());
+
+            //Dar una respuesta al cliente
+
+            responseDTO.setResponse("Tanque eliminado exitosamente");
+            responseDTO.setTanques(tanquesResponse);
+        } else {
+            //Llenar una respuesta al cliente
+            tanquesResponse.setId(requestDTO.getRequest().getTanques().getId());
+            responseDTO.setResponse("El tanque no existe");
+            responseDTO.setTanques(tanquesResponse);
+        }
+
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+    }
 }
