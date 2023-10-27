@@ -20,6 +20,7 @@ public class Tanques {
     private Double nivel_actual;
     private String tipo_gasolina;
     private String ubicacion;
+    private Double precio_galon;
     private Integer id_cliente;
     private String tipo_pago;
     private Date fecha;
@@ -64,6 +65,14 @@ public class Tanques {
 
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    public Double getPrecio_galon() {
+        return precio_galon;
+    }
+
+    public void setPrecio_galon(Double precio_galon) {
+        this.precio_galon = precio_galon;
     }
 
     public Integer getId_cliente() {

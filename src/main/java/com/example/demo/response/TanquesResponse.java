@@ -20,6 +20,8 @@ public class TanquesResponse {
     private String tipo_gasolina;
     @JsonProperty("ubicacion")
     private String ubicacion;
+    @JsonProperty("precio_galon")
+    private Double precio_galon;
     @JsonProperty("id_cliente")
     private Integer id_cliente;
     @JsonProperty("tipo_pago")
@@ -69,6 +71,14 @@ public class TanquesResponse {
 
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    public Double getPrecio_galon() {
+        return precio_galon;
+    }
+
+    public void setPrecio_galon(Double precio_galon) {
+        this.precio_galon = precio_galon;
     }
 
     public Integer getId_cliente() {

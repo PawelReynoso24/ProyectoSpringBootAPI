@@ -44,6 +44,7 @@ public class TanquesService {
         tanquesResponse.setNivel_actual(tanque.getNivel_actual());
         tanquesResponse.setTipo_gasolina(tanque.getTipo_gasolina());
         tanquesResponse.setUbicacion(tanque.getUbicacion());
+        tanquesResponse.setPrecio_galon(tanque.getPrecio_galon());
         tanquesResponse.setId_cliente(tanque.getId_cliente());
         tanquesResponse.setTipo_pago(tanque.getTipo_pago());
         tanquesResponse.setFecha(tanque.getFecha());
@@ -57,4 +58,37 @@ public class TanquesService {
 
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
+
+    //Actualizar un tanque
+public ResponseEntity<ResponseDTO> actualizarTanque(RequestDTO requestDTO) {
+    tanquesRepository.updateCapacidadTanque(requestDTO.getRequest().getTanques().getCapacidad(), requestDTO.getRequest().getTanques().getId());
+    tanquesRepository.updateNivelTanque(requestDTO.getRequest().getTanques().getNivel_actual(), requestDTO.getRequest().getTanques().getId());
+    tanquesRepository.updateTipoGasolinaTanque(requestDTO.getRequest().getTanques().getTipo_gasolina(), requestDTO.getRequest().getTanques().getId());
+    tanquesRepository.updateUbicacionTanque(requestDTO.getRequest().getTanques().getUbicacion(), requestDTO.getRequest().getTanques().getId());
+    tanquesRepository.updatePrecioGalonTanque(requestDTO.getRequest().getTanques().getPrecio_galon(), requestDTO.getRequest().getTanques().getId());
+    tanquesRepository.updateIdClienteTanque(requestDTO.getRequest().getTanques().getId_cliente(), requestDTO.getRequest().getTanques().getId());
+    tanquesRepository.updateTipoPagoTanque(requestDTO.getRequest().getTanques().getTipo_pago(), requestDTO.getRequest().getTanques().getId());
+    tanquesRepository.updateFechaTanque(requestDTO.getRequest().getTanques().getFecha(), requestDTO.getRequest().getTanques().getId());
+
+    //Llenar una respuesta al cliente
+    TanquesResponse tanquesResponse = new TanquesResponse();
+    tanquesResponse.setCapacidad(requestDTO.getRequest().getTanques().getCapacidad());
+    tanquesResponse.setNivel_actual(requestDTO.getRequest().getTanques().getNivel_actual());
+    tanquesResponse.setTipo_gasolina(requestDTO.getRequest().getTanques().getTipo_gasolina());
+    tanquesResponse.setUbicacion(requestDTO.getRequest().getTanques().getUbicacion());
+    tanquesResponse.setPrecio_galon(requestDTO.getRequest().getTanques().getPrecio_galon());
+    tanquesResponse.setId_cliente(requestDTO.getRequest().getTanques().getId_cliente());
+    tanquesResponse.setTipo_pago(requestDTO.getRequest().getTanques().getTipo_pago());
+    tanquesResponse.setFecha(requestDTO.getRequest().getTanques().getFecha());
+
+    //Dar una respuesta al cliente
+    ResponseDTO responseDTO = new ResponseDTO();
+    responseDTO.setResponse("Tanque actualizado exitosamente");
+    responseDTO.setTanques(tanquesResponse);
+
+    return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+    }
+
+    //Eliminar un tanque
+
 }

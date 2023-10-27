@@ -32,7 +32,7 @@ public class TanquesController {
     public Optional<Tanques> obtenerIDTanque(@PathVariable("id") Integer id) {
         return tanquesService.obtenerIDTanque(id);
     }
-/*
+
     //Ruta para guardar un tanque (CREATE)
     //http://localhost:8080/apiSPTanques/guardarTanque
     @PostMapping("/guardarTanque")
@@ -46,7 +46,7 @@ public class TanquesController {
     public ResponseEntity<ResponseDTO> actualizarTanque(@RequestBody RequestDTO requestDTO) {
         return tanquesService.actualizarTanque(requestDTO);
     }
-
+/*
     //Ruta para eliminar un tanque (DELETE)
     //http://localhost:8080/apiSPTanques/eliminarTanque/{id}
     @DeleteMapping("/eliminarTanque")
