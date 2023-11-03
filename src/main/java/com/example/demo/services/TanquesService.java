@@ -3,7 +3,6 @@ package com.example.demo.services;
 import com.example.demo.models.Tanques;
 import com.example.demo.repositories.TanquesRepository;
 import com.example.demo.request.RequestDTO;
-import com.example.demo.response.EstudianteResponse;
 import com.example.demo.response.ResponseDTO;
 import com.example.demo.response.TanquesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,21 @@ public class TanquesService {
     public Optional<Tanques> obtenerIDTanque(Integer id) {
         if (tanquesRepository.existsById(id)) {
             return tanquesRepository.findById(id);
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    //API
+    //Obtener todos el nivel del tanque
+    public Optional<Double> obtenerNivelTanque(Integer id) {
+        if (tanquesRepository.existsById(id)) {
+            Optional<Tanques> tanqueOptional = tanquesRepository.findById(id);
+            if (tanqueOptional.isPresent()) {
+                return Optional.of(tanqueOptional.get().getNivel_actual());
+            } else {
+                return Optional.empty();
+            }
         } else {
             return Optional.empty();
         }
@@ -112,6 +126,25 @@ public ResponseEntity<ResponseDTO> actualizarTanque(RequestDTO requestDTO) {
             responseDTO.setResponse("El tanque no existe");
             responseDTO.setTanques(tanquesResponse);
         }
+
+        return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+    }
+
+    //API
+    //Actualizar el nivel del tanque
+    public ResponseEntity<ResponseDTO> actualizarNivelTanque (RequestDTO requestDTO) {
+        System.out.println(requestDTO.getRequest().getTanques().getNivel_actual());
+        System.out.println(requestDTO.getRequest().getTanques().getId());
+        tanquesRepository.updateNivelTanque(requestDTO.getRequest().getTanques().getNivel_actual(), requestDTO.getRequest().getTanques().getId());
+
+        //Llenar una respuesta al cliente
+        TanquesResponse tanquesResponse = new TanquesResponse();
+        tanquesResponse.setNivel_actual(requestDTO.getRequest().getTanques().getNivel_actual());
+
+        //Dar una respuesta al cliente
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setResponse("Nivel del tanque actualizado exitosamente");
+        responseDTO.setTanques(tanquesResponse);
 
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }

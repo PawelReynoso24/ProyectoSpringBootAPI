@@ -54,4 +54,10 @@ public class TanquesController {
         return tanquesService.eliminarTanque(requestDTO);
     }
 
+    //Ruta para obtener el nivel de un tanque
+    //http://localhost:8080/apiSPTanques/obtenerNivelTanque/{id}
+    @GetMapping("/obtenerNivelTanque/{id}")
+    public Optional<Double> obtenerNivelTanque(@PathVariable("id") Integer id) {
+        return tanquesService.obtenerNivelTanque(id);
+    }
 }
